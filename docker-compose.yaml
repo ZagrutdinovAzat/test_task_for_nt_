@@ -4,6 +4,7 @@ services:
       context: ./docker/nginx
     volumes:
       - ./app:/symfony
+    image: ${PROJECT_NAME}-nginx-img
     container_name: ${PROJECT_NAME}-nginx
     restart: always
     ports:
@@ -14,6 +15,7 @@ services:
       context: ./docker/php-fpm
     volumes:
       - ./app:/symfony
+    image: ${PROJECT_NAME}-php-fpm-img
     container_name: ${PROJECT_NAME}-php-fpm
     depends_on:
       - mysql
@@ -24,6 +26,7 @@ services:
     volumes:
       - ./app:/symfony
     command: sleep 10000
+    image: ${PROJECT_NAME}-php-cli-img
     container_name: ${PROJECT_NAME}-php-cli
 
   mysql:

@@ -27,6 +27,42 @@ class CreateOrderController extends AbstractController
         $ticketKidPrice = $data['ticket_kid_price'];
         $ticketKidQuantity = $data['ticket_kid_quantity'];
 
+        $errors = [];
+
+        if (!is_int($eventId) || $eventId <= 0) {
+            $errors[] = 'Invalid event ID';
+        }
+
+        $eventDateTime = \DateTime::createFromFormat('Y-m-d H:i:s', $eventDate);
+        if (!$eventDateTime) {
+            $errors[] = 'Invalid event date format';
+        } else {
+            $today = new \DateTime();
+            if ($eventDateTime < $today) {
+                $errors[] = 'Event date cannot be in the past';
+            }
+        }
+
+        if (!is_int($ticketAdultPrice) || $ticketAdultPrice <= 0) {
+            $errors[] = 'Invalid adult ticket price';
+        }
+
+        if (!is_int($ticketAdultQuantity) || $ticketAdultQuantity < 0) {
+            $errors[] = 'Invalid adult ticket quantity';
+        }
+
+        if (!is_int($ticketKidPrice) || $ticketKidPrice <= 0) {
+            $errors[] = 'Invalid kid ticket price';
+        }
+
+        if (!is_int($ticketKidQuantity) || $ticketKidQuantity < 0) {
+            $errors[] = 'Invalid kid ticket quantity';
+        }
+
+        if (!empty($errors)) {
+            return new JsonResponse(['errors' => $errors]);
+        }
+
         $result = $this->orderService->createOrder(
             $eventId,
             $eventDate,

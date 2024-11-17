@@ -22,8 +22,11 @@ composer install
 
 php bin/console doctrine:migrations:execute --up 'DoctrineMigrations\Version20241114210310'
 
+5. Подключение к db через PhpStorm
 
-5. Была создана подобие API (OrderController.php)
+![img.png](img/img5.png)
+
+6. Была создана подобие API (OrderController.php)
 
 http://localhost:8081/book
 ![img.png](img/img.png)
@@ -31,12 +34,12 @@ http://localhost:8081/book
 http://localhost:8081/approve
 ![img.png](img/img1.png)
 
-6. Оформление билета (CreateOrderController.php)
+7. Оформление билета (CreateOrderController.php)
    
 http://localhost:8081/create
 ![img.png](img/img3.png)
 
-7. Сами обращения к апи и сохранения происходят в OrderService.php
+8. Сами обращения к апи и сохранения происходят в OrderService.php
 
 ## Задание 2
 

@@ -52,7 +52,6 @@ class OrderService
             ],
         ]);
 
-//        $responseData = json_decode($response->getContent(), true);
 
         if ($response->getStatusCode() == 400) {
             return $this->createOrder($eventId, $eventDate, $ticketAdultPrice, $ticketAdultQuantity, $ticketKidPrice, $ticketKidQuantity);
