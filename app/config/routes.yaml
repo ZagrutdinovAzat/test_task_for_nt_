@@ -1,0 +1,15 @@
+create_order:
+  path: /create
+  controller: App\Controller\CreateOrderController::createOrder
+  methods: POST
+
+book_order:
+  path: /book
+  controller: App\Controller\OrderController::bookOrder
+  methods: POST
+
+approve_order:
+  path: /approve
+  controller: App\Controller\OrderController::approveOrder
+  methods: POST
+
